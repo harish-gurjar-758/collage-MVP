@@ -2,10 +2,11 @@ import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import connectDB from "./src/config/connectDB.js";
 
 // Load environment variables
-dotenv.config();
-
+dotenv.config(); 
+ 
 // Initialize app
 const app = express();
 
@@ -19,6 +20,9 @@ app.use(
         credentials: true,
     })
 );
+
+// Connect MongoDB
+connectDB();
 
 // Test Route
 app.get("/", (req, res) => {
