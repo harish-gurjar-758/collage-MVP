@@ -1,30 +1,29 @@
 import mongoose from "mongoose";
 import { type } from "node:os";
 import Department from "./departmentModel";
+import { ref } from "node:process";
 
 
 const userSchema = mongoose.Schema({
-    fullName: [
-        {
-            firstName: {
-                type: String,
-                required: true,
-            },
-            LastName: {
-                type: String,
-                required: true,
-            }
+    fullName: {
+        firstName: {
+            type: String,
+            required: true,
+        },
+        LastName: {
+            type: String,
+            required: true,
         }
-    ],
+    },
     userRole: {
         type: String,
         enum: "student, teacher, gest, management"
     },
-    contact: [{
+    contact: {
         email: { type: String },
         phone: { type: Number },
         address: { type: String }
-    }],
+    },
     password: {
         type: String,
         required: true,
@@ -32,7 +31,10 @@ const userSchema = mongoose.Schema({
     photo: {
         type: String,
     },
-    department: {Department},
+    department: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Departments"
+    },
 });
 
 const User = mongoose("Users", userSchema);
