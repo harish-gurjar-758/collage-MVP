@@ -66,8 +66,8 @@ app.get("/", (req, res) => {
 });
 
 // Example Route Structure
-// import authRoutes from "./src/routes/auth.routes.js";
-// app.use("/api/auth", authRoutes);
+import userRoutes from "./src/Routes/userRoutes.js";
+app.use("/api/auth", userRoutes);
 
 // ===============================
 // Global Error Handler
