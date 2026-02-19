@@ -129,7 +129,7 @@ export default function SignUp() {
             >
                 {steps.map((label) => (
                     <Step key={label}>
-                        <StepLabel StepIconComponent={ColorlibStepIcon}>
+                        <StepLabel stepIcon={ColorlibStepIcon}>
                             {label}
                         </StepLabel>
                     </Step>
@@ -151,7 +151,7 @@ export default function SignUp() {
                             setUserData({ ...userData, role: "student" });
                             setStep(2);
                         }}
-                        className="w-[220px] h-[130px] border flex items-center justify-center gap-4 shadow-[1px_0_10px_#808080] rounded cursor-pointer hover:scale-105 transition"
+                        className="w-[220px] h-[130px] border flex items-center justify-center gap-4 shadow-[1px_0_10px_#808080] rounded cursor-pointer hover:scale-105 transition font-serif"
                     >
                         <PiStudentFill className="text-3xl" />
                         <h3 className="text-xl">Student</h3>
@@ -162,7 +162,7 @@ export default function SignUp() {
                             setUserData({ ...userData, role: "teacher" });
                             setStep(2);
                         }}
-                        className="w-[220px] h-[130px] border flex items-center justify-center gap-4 shadow-[1px_0_10px_#808080] rounded cursor-pointer hover:scale-105 transition"
+                        className="w-[220px] h-[130px] border flex items-center justify-center gap-4 shadow-[1px_0_10px_#808080] rounded cursor-pointer hover:scale-105 transition font-serif"
                     >
                         <GiTeacher className="text-3xl" />
                         <h3 className="text-xl">Teacher</h3>
