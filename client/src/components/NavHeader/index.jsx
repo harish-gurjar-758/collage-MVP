@@ -28,10 +28,11 @@ export default function NavHeader() {
                     <li>Home</li>
                     <li>Admission</li>
                     <li>Student Corner</li>
+                    <li>Departments</li>
                 </ul>
                 {/* -- */}
-                <div>
-                    <div>
+                <div className='flex items-center gap-7'>
+                    <div className='flex items-center'>
                         {/* when user not logined */}
                         <h3 className='flex gap-2'>
                             <span className='cursor-pointer'>Login</span>
