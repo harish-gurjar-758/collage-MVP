@@ -8,6 +8,7 @@ import CampusTour from './pages/MainSite/CampusTour';
 import Footer from './components/Footer';
 import Admission from './pages/MainSite/Admission/Admission';
 import StudentCorner from './pages/MainSite/StudentCorner';
+import DepartmentsPage from './pages/MainSite/Departments';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
 
           <Route path="/admission" element={<Admission />} />
           <Route path="/student" element={<StudentCorner />} />
+          <Route path="/departments" element={<DepartmentsPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>
