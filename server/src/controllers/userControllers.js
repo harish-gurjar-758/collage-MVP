@@ -54,6 +54,8 @@ export const registerUser = async (req, res) => {
     // 4️⃣ Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    const photo = req.file?.path || 'https://img.freepik.com/free-psd/3d-illustration-reading-with-book-esssential_23-2151295086.jpg';
+
     // 5️⃣ Create user
     const user = await User.create({
       fullName,
@@ -65,6 +67,7 @@ export const registerUser = async (req, res) => {
       enrollmentNumber,
       employeeId,
       phone,
+      photo,
     });
 
     res.status(201).json({
@@ -203,9 +206,8 @@ export const toggleUserStatus = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: `User ${
-        user.isActive ? "Activated" : "Deactivated"
-      } successfully`,
+      message: `User ${user.isActive ? "Activated" : "Deactivated"
+        } successfully`,
     });
   } catch (error) {
     res.status(500).json({
