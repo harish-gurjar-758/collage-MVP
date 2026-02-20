@@ -13,6 +13,9 @@ import CloseIcon from "@mui/icons-material/Close";
 import { GiPhone } from "react-icons/gi";
 import { HiOutlineMail } from "react-icons/hi";
 import { Link, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+
 
 export default function NavHeader() {
     const [user, setUser] = useState(null);
@@ -49,18 +52,59 @@ export default function NavHeader() {
     return (
         <>
             {/* 🔥 TOP CONTACT BAR */}
-            <div className="w-full bg-black text-white text-xs flex justify-end px-6 py-2">
-                <div className="flex gap-6">
-                    <div className="flex items-center gap-2 hover:text-red-400 transition cursor-pointer">
-                        <GiPhone />
-                        <span>+91 9987654321</span>
+            <motion.div
+                initial={{ y: -60, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                className="w-full bg-gradient-to-r from-indigo-900 via-indigo-800 to-indigo-900 text-white text-sm"
+            >
+                <div className="max-w-7xl mx-auto px-6 py-2 flex flex-col md:flex-row items-center justify-between gap-2">
+
+                    {/* LEFT SIDE - CONTACT INFO */}
+                    <div className="flex flex-col sm:flex-row items-center gap-4">
+
+                        {/* Phone */}
+                        <div className="flex items-center gap-2 group cursor-pointer">
+                            <div className="p-2 rounded-full bg-white/10 backdrop-blur-md group-hover:bg-indigo-600 transition duration-300">
+                                <GiPhone className="text-lg" />
+                            </div>
+                            <span className="group-hover:text-indigo-300 transition duration-300">
+                                +91 9987654321
+                            </span>
+                        </div>
+
+                        {/* Divider (Hidden on small screen) */}
+                        <span className="hidden sm:block w-px h-4 bg-white/30"></span>
+
+                        {/* Email */}
+                        <div className="flex items-center gap-2 group cursor-pointer">
+                            <div className="p-2 rounded-full bg-white/10 backdrop-blur-md group-hover:bg-indigo-600 transition duration-300">
+                                <HiOutlineMail className="text-lg" />
+                            </div>
+                            <span className="group-hover:text-indigo-300 transition duration-300">
+                                college.mvp@gmail.com
+                            </span>
+                        </div>
                     </div>
-                    <div className="flex items-center gap-2 hover:text-red-400 transition cursor-pointer">
-                        <HiOutlineMail />
-                        <span>collage.mvp@gmail.com</span>
+
+                    {/* RIGHT SIDE - SOCIAL LINKS */}
+                    <div className="flex items-center gap-3 mt-2 md:mt-0">
+
+                        {[FaFacebookF, FaInstagram, FaLinkedinIn].map((Icon, index) => (
+                            <motion.div
+                                key={index}
+                                whileHover={{ scale: 1.2 }}
+                                whileTap={{ scale: 0.9 }}
+                                className="p-2 rounded-full bg-white/10 backdrop-blur-md hover:bg-indigo-600 transition duration-300 cursor-pointer"
+                            >
+                                <Icon className="text-sm" />
+                            </motion.div>
+                        ))}
+
                     </div>
                 </div>
-            </div>
+            </motion.div>
+
 
             {/* 🔥 STICKY NAVBAR */}
             <header className="sticky top-0 z-50 bg-white shadow-md">

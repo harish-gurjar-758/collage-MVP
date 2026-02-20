@@ -5,6 +5,9 @@ import NavHeader from './components/NavHeader';
 import AboutCollege from './pages/MainSite/AboutCollege/AboutCollege';
 import ExplorePrograms from './pages/MainSite/ExplorePrograms';
 import CampusTour from './pages/MainSite/CampusTour';
+import Footer from './components/Footer';
+import Admission from './pages/MainSite/Admission/Admission';
+import StudentCorner from './pages/MainSite/StudentCorner';
 
 function App() {
 
@@ -18,7 +21,11 @@ function App() {
           <Route path='/about-college' element={<AboutCollege />} />
           <Route path="/programs" element={<ExplorePrograms />} />
           <Route path="/campus-tour" element={<CampusTour />} />
+
+          <Route path="/admission" element={<Admission />} />
+          <Route path="/student" element={<StudentCorner />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   )
