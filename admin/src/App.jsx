@@ -15,6 +15,7 @@ import Students from "./pages/Students";
 
 // Departments Routes
 import Departments from "./pages/Departments/Departments";
+import AddDepartment from "./pages/Departments/AddDepartment";
 import UpdateDepartmentDetails from "./pages/Departments/UpdateDepartmentDetails";
 import ViewDepartmentDetails from "./pages/Departments/ViewDepartmentDetails";
 
@@ -40,6 +41,7 @@ function App() {
 
           {/* Departments Routes */}
           <Route path="departments" element={<Departments />} />
+          <Route path="add-department" element={<AddDepartment />} />
           <Route path="update-department-details" element={<UpdateDepartmentDetails />} />
           <Route path="view-department-details" element={<ViewDepartmentDetails />} />
 
