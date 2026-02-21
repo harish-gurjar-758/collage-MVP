@@ -118,11 +118,13 @@ export default function TeacherTableView() {
             key: "action",
             render: () => (
                 <Space>
-                    <Button type="link">
+                    <Button
+                        onClick={() => navigate('/update-teacher-details')}
+                        type="link"
+                    >
                         <FaUserEdit />
                     </Button>
                     <Button
-                        onClick={() => navigate('/update-teacher-details')}
                         type="link"><ImEye /></Button>
                     <Button type="link" danger>
                         <MdDeleteOutline />
