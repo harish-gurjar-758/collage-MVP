@@ -28,7 +28,7 @@ export const createDepartmentApi = async (data) => {
 ========================= */
 export const getAllDepartmentsApi = async () => {
     try {
-        const res = await api.get("/departments");
+        const res = await api.get("/department");
         return res.data;
     } catch (error) {
         throw error.response?.data || error.message;

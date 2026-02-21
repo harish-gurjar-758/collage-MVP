@@ -42,8 +42,8 @@ function App() {
           {/* Departments Routes */}
           <Route path="departments" element={<Departments />} />
           <Route path="add-department" element={<AddDepartment />} />
-          <Route path="update-department-details" element={<UpdateDepartmentDetails />} />
-          <Route path="view-department-details" element={<ViewDepartmentDetails />} />
+          <Route path="update-department-details/:id" element={<UpdateDepartmentDetails />} />
+          <Route path="view-department-details/:id" element={<ViewDepartmentDetails />} />
 
 
           <Route path="news" element={<News />} />
