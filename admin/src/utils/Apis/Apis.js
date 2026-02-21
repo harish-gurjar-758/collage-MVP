@@ -40,7 +40,7 @@ export const getAllDepartmentsApi = async () => {
 ========================= */
 export const getDepartmentByIdApi = async (id) => {
     try {
-        const res = await api.get(`/departments/${id}`);
+        const res = await api.get(`/department/${id}`);
         return res.data;
     } catch (error) {
         throw error.response?.data || error.message;
@@ -52,7 +52,7 @@ export const getDepartmentByIdApi = async (id) => {
 ========================= */
 export const updateDepartmentApi = async (id, data) => {
     try {
-        const res = await api.put(`/departments/${id}`, data);
+        const res = await api.put(`/department/${id}`, data);
         return res.data;
     } catch (error) {
         throw error.response?.data || error.message;
@@ -64,7 +64,7 @@ export const updateDepartmentApi = async (id, data) => {
 ========================= */
 export const deleteDepartmentApi = async (id) => {
     try {
-        const res = await api.delete(`/departments/${id}`);
+        const res = await api.delete(`/department/${id}`);
         return res.data;
     } catch (error) {
         throw error.response?.data || error.message;
