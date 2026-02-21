@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Teachers() {
+export default function AddTeacher() {
     return (
         <div>
-            this is teacher Vew
+            <h1>Add New Teacher</h1>
         </div>
     )
 }
