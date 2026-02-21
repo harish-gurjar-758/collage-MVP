@@ -125,6 +125,7 @@ export default function TeacherTableView() {
                         <FaUserEdit />
                     </Button>
                     <Button
+                        onClick={() => navigate('/view-teacher-details')}
                         type="link"><ImEye /></Button>
                     <Button type="link" danger>
                         <MdDeleteOutline />
