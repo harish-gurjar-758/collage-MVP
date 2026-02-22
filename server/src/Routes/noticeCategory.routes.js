@@ -1,5 +1,12 @@
 import express from 'express'
-import { createNoticeCategory, deleteNoticeCategory, getAllNoticeCategory, getNoticeCategoryById, updateNopticeCategory } from '../controllers/noticeCategory.controller';
+import {
+    createNoticeCategory,
+    deleteNoticeCategory,
+    getAllNoticeCategory,
+    getNoticeCategoryById,
+    updateNopticeCategory
+
+} from '../controllers/noticeCategory.controller.js';
 
 const router = express.Router();
 

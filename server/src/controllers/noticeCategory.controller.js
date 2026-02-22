@@ -1,4 +1,4 @@
-import NoticeCategory from "../models/noticeCategoryModel";
+import NoticeCategory from "../models/noticeCategoryModel.js";
 
 
 /* =======================
