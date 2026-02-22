@@ -36,6 +36,11 @@ export default function AdminLayout() {
             label: <Link to="/departments">Departments</Link>,
         },
         {
+            key: "/notices",
+            icon: <BookOutlined />,
+            label: <Link to="/notices">Notices</Link>,
+        },
+        {
             key: "/news",
             icon: <NotificationOutlined />,
             label: <Link to="/news">News & Events</Link>,

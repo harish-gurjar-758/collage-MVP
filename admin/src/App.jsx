@@ -19,6 +19,9 @@ import AddDepartment from "./pages/Departments/AddDepartment";
 import UpdateDepartmentDetails from "./pages/Departments/UpdateDepartmentDetails";
 import ViewDepartmentDetails from "./pages/Departments/ViewDepartmentDetails";
 
+// Notices Routes
+import Notices from "./pages/Notices";
+
 // News Routes
 import News from "./pages/News";
 import Users from "./pages/Users";
@@ -45,6 +48,8 @@ function App() {
           <Route path="update-department-details/:id" element={<UpdateDepartmentDetails />} />
           <Route path="view-department-details/:id" element={<ViewDepartmentDetails />} />
 
+          {/* Notice Routes */}
+          <Route path="notices" element={<Notices />} />
 
           <Route path="news" element={<News />} />
           <Route path="users" element={<Users />} />
