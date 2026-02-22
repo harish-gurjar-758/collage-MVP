@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     Table,
     Space,
@@ -9,12 +9,14 @@ import {
     Select,
     Row,
     Col,
+    message,
 } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { ImEye } from "react-icons/im";
 import { MdDeleteOutline } from "react-icons/md";
 import { FaUserEdit } from "react-icons/fa";
+import { getAllDepartmentsApi } from "../../utils/Apis/Apis";
 
 const { Option } = Select;
 
@@ -24,6 +26,20 @@ export default function TeacherTableView() {
     const [postFilter, setPostFilter] = useState("");
     const [genderFilter, setGenderFilter] = useState("");
     const navigate = useNavigate();
+    const [department, setDepartment] = useState([]);
+
+    useEffect(() => {
+        const getDepartment = async () => {
+            try {
+                const res = await getAllDepartmentsApi();
+                setDepartment(res.data || []);
+            } catch (error) {
+                message.error(error.message || "Failed to fetch departments");
+            }
+        };
+
+        getDepartment();
+    }, []);
 
     const data = [
         {
@@ -154,8 +170,12 @@ export default function TeacherTableView() {
                         onChange={(value) => setDepartmentFilter(value)}
                         allowClear
                     >
-                        <Option value="Computer Science">Computer Science</Option>
-                        <Option value="Mechanical">Mechanical</Option>
+                        {department.map((item) => (
+                            <Option
+                                key={item._id}
+                                value={item.departmentName}
+                            >{item.departmentName}</Option>
+                        ))}
                     </Select>
                 </Col>
 
