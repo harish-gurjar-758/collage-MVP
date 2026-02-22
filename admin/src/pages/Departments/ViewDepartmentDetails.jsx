@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Card, Flex, message, Spin } from "antd";
-import { useParams } from "react-router-dom";
+import { Button, Card, Flex, message, Spin } from "antd";
+import { useNavigate, useParams } from "react-router-dom";
 import { getDepartmentByIdApi } from "../../utils/Apis/Apis";
+import { MdClose } from "react-icons/md";
 
 export default function ViewDepartmentDetails() {
-    const { id } = useParams(); // ✅ Get id from URL
+    const { id } = useParams(); // Get id from URL
     const [departmentData, setDepartmentData] = useState(null);
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const getDepartmentData = async () => {
@@ -36,6 +38,17 @@ export default function ViewDepartmentDetails() {
 
     return (
         <div className="p-6 bg-gray-100 min-h-screen">
+            <div className='flex items-center justify-between'>
+                <h2 className='text-2xl font-bold mb-6 text-gray-700' >
+                    View Teacher Details
+                </h2>
+                <Button
+                    danger
+                    onClick={() => navigate('/departments')}
+                >
+                    <MdClose />
+                </Button>
+            </div>
             <Flex justify="center">
                 <Card
                     className="w-full max-w-3xl shadow-xl rounded-2xl"
