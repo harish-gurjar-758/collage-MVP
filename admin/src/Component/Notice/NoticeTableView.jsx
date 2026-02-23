@@ -17,9 +17,34 @@ export default function NoticeTableView() {
 
     const columns = [
         {
+            title: "Banner",
+            dataIndex: "banner",
+            key: "banner",
+        },
+        {
             title: "Title",
-            dataIndex: "title",
+            dataIndex: "",
             key: "title",
+        },
+        {
+            title: "Description",
+            dataIndex: "description",
+            key: "descriptione",
+        },
+        {
+            title: "Category",
+            dataIndex: "category",
+            key: "category",
+        },
+        {
+            title: "Date",
+            dataIndex: "date",
+            key: "date",
+        },
+        {
+            title: "Status",
+            dataIndex: "status",
+            key: "status",
         },
         {
             title: "Action",
