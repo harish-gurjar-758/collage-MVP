@@ -10,7 +10,7 @@ const { TextArea } = Input;
 export default function AddNotice() {
     const navigate = useNavigate();
     const [form] = Form.useForm();
-    const [file, setFile] = useState(null);
+    const [banner, setBanner] = useState(null);
     const [loading, setLoading] = useState(false);
     const [noticeCategory, setNoticeCategory] = useState([]);
 
@@ -40,8 +40,8 @@ export default function AddNotice() {
             formData.append("status", values.status);
             formData.append("category", values.category);
 
-            if (file) {
-                formData.append("banner", file);
+            if (banner) {
+                formData.append("banner", banner);
             }
 
             await createNoticeApi(formData);
@@ -133,8 +133,8 @@ export default function AddNotice() {
                     {/* Banner Upload */}
                     <Form.Item label="Banner">
                         <Upload
-                            beforeUpload={(file) => {
-                                setFile(file);
+                            beforeUpload={(banner) => {
+                                setBanner(banner);
                                 return false; // prevent auto upload
                             }}
                             maxCount={1}
