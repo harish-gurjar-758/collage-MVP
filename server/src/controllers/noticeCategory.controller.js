@@ -31,7 +31,7 @@ export const createNoticeCategory = async (req, res) => {
 ========================= */
 export const getAllNoticeCategory = async (req, res) => {
     try {
-        const categorys = await noticeCategory.find();
+        const categorys = await NoticeCategory.find();
 
         res.status(200).json({
             success: true,

@@ -25,6 +25,7 @@ import Notices from "./pages/Notices";
 // News Routes
 import News from "./pages/News";
 import Users from "./pages/Users";
+import AddNoticeCategory from "./pages/Notices/NoticeCategory/AddNoticeCategory";
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
 
           {/* Notice Routes */}
           <Route path="notices" element={<Notices />} />
+          <Route path="add-notice-category" element={<AddNoticeCategory />} />
 
           <Route path="news" element={<News />} />
           <Route path="users" element={<Users />} />
