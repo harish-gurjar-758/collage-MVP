@@ -1,0 +1,76 @@
+import { Button, Col, Input, Row, Space, Table } from 'antd'
+import React, { useState } from 'react'
+import { FaUserEdit } from 'react-icons/fa'
+import { MdDeleteOutline } from 'react-icons/md'
+import { useNavigate } from 'react-router-dom'
+
+export default function NoticeTableView() {
+
+    const [searchText, setSearchText] = useState("")
+    const [noticeData, setNoticeData] = useState([])
+    const navigate = useNavigate()
+
+    // Filter Logic
+    const filteredData = noticeData.filter((item) =>
+        item.title?.toLowerCase().includes(searchText.toLowerCase())
+    )
+
+    const columns = [
+        {
+            title: "Title",
+            dataIndex: "title",
+            key: "title",
+        },
+        {
+            title: "Action",
+            key: "action",
+            render: (_, record) => (
+                <Space>
+                    <Button
+                        onClick={() => navigate(`/update-notice/${record._id}`)}
+                        type="link"
+                    >
+                        <FaUserEdit />
+                    </Button>
+
+                    <Button
+                        type="link"
+                        danger
+                        onClick={() => handleDelete(record._id)}
+                    >
+                        <MdDeleteOutline />
+                    </Button>
+                </Space>
+            ),
+        },
+    ]
+
+    const handleDelete = (id) => {
+        console.log("Delete notice id:", id)
+    }
+
+    return (
+        <div>
+
+            {/*  Search Section */}
+            <Row gutter={16} className="mb-5">
+                <Col xs={24} md={6}>
+                    <Input
+                        placeholder="Search notice..."
+                        value={searchText}
+                        onChange={(e) => setSearchText(e.target.value)}
+                        allowClear
+                    />
+                </Col>
+            </Row>
+
+            {/* Table */}
+            <Table
+                columns={columns}
+                dataSource={filteredData}
+                rowKey="_id"
+                pagination={{ pageSize: 5 }}
+            />
+        </div>
+    )
+}

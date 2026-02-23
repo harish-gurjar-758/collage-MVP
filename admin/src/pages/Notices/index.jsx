@@ -2,6 +2,7 @@ import { Button } from 'antd';
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import NoticeCategoryTableView from '../../Component/Notice/NoticeCategoryTableView';
+import NoticeTableView from '../../Component/Notice/NoticeTableView';
 
 export default function Notices() {
     const navigate = useNavigate();
@@ -28,6 +29,7 @@ export default function Notices() {
                         className='font-[500]'
                     >Add Notice</Button>
                 </div>
+                <NoticeTableView />
             </div>
         </div>
     )
