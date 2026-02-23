@@ -52,14 +52,27 @@ export default function AdminLayout() {
         },
     ];
 
-    // Format breadcrumb title
-    const pathName = location.pathname === "/"
-        ? "Dashboard"
-        : location.pathname.replace("/", "").toUpperCase();
+    const pathName =
+        location.pathname === "/"
+            ? "Dashboard"
+            : location.pathname.replace("/", "").toUpperCase();
 
     return (
         <Layout style={{ minHeight: "100vh" }}>
-            <Sider breakpoint="lg" collapsedWidth="0">
+
+            {/* ✅ Fixed Sidebar */}
+            <Sider
+                width={220}
+                breakpoint="lg"
+                collapsedWidth="0"
+                style={{
+                    position: "fixed",
+                    left: 0,
+                    top: 0,
+                    bottom: 0,
+                    height: "100vh",
+                }}
+            >
                 <div style={{ color: "white", padding: 20, fontSize: 18 }}>
                     Admin Panel
                 </div>
@@ -72,12 +85,38 @@ export default function AdminLayout() {
                 />
             </Sider>
 
-            <Layout>
-                <Header className="bg-gray-900 text-white pl-[20px] flex items-center">
+            {/* ✅ Main Layout */}
+            <Layout style={{ marginLeft: 220 }}>
+
+                {/* ✅ Fixed Header */}
+                <Header
+                    style={{
+                        position: "fixed",
+                        top: 0,
+                        left: 220,
+                        right: 0,
+                        zIndex: 1000,
+                        background: "#111827",
+                        color: "#fff",
+                        paddingLeft: 20,
+                        display: "flex",
+                        alignItems: "center",
+                        height: 64,
+                    }}
+                >
                     Welcome Admin
                 </Header>
 
-                <Content style={{ margin: "16px" }}>
+                {/* ✅ Content */}
+                <Content
+                    style={{
+                        marginTop: 80,
+                        marginBottom: 20,
+                        marginLeft: 16,
+                        marginRight: 16,
+                        overflow: "auto",
+                    }}
+                >
                     <Breadcrumb
                         style={{ marginBottom: 16 }}
                         items={[
@@ -89,7 +128,7 @@ export default function AdminLayout() {
                     <div
                         style={{
                             padding: 24,
-                            minHeight: 360,
+                            minHeight: "calc(100vh - 160px)",
                             background: "#fff",
                             borderRadius: 8,
                         }}

@@ -46,14 +46,6 @@ export default function NoticeCategoryTableView() {
                     >
                         <FaUserEdit />
                     </Button>
-
-                    <Button
-                        onClick={() => navigate(`/view-notice-category/${record._id}`)}
-                        type="link"
-                    >
-                        <ImEye />
-                    </Button>
-
                     <Button
                         type="link"
                         danger
