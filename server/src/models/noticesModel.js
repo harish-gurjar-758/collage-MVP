@@ -18,7 +18,6 @@ const noticeSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        defoult: "wait",
     },
     category: {
         type: mongoose.Schema.Types.ObjectId,

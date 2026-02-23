@@ -141,3 +141,74 @@ export const deleteNoticeCategroyApi = async (id) => {
         throw error.response?.data || error.message;
     }
 };
+
+/* =========================
+   CREATE NOTICE
+========================= */
+export const createNoticeApi = async (formData) => {
+    try {
+        const res = await api.post("/notice", formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        });
+
+        return res.data;
+
+    } catch (error) {
+        throw error.response?.data?.message || error.message;
+    }
+};
+
+/* =========================
+   GET ALL NOTICE
+========================= */
+export const getAllNoticeApi = async () => {
+    try {
+        const res = await api.get("/notice");
+        return res.data;
+    } catch (error) {
+        throw error.response?.data || error.message;
+    }
+};
+
+/* =========================
+   GET SINGLE NOTICE
+========================= */
+export const getNoticeByIdApi = async (id) => {
+    try {
+        const res = await api.get(`/notice/${id}`);
+        return res.data;
+    } catch (error) {
+        throw error.response?.data || error.message;
+    }
+};
+
+
+/* =========================
+   UPDATE NOTICE
+========================= */
+export const updateNoticeApi = async (id, data) => {
+    try {
+        const res = await api.put(`/notice/${id}`, data, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        });
+        return res.data;
+    } catch (error) {
+        throw error.response?.data || error.message;
+    }
+};
+
+/* =========================
+   DELETE NOTICE
+========================= */
+export const deleteNoticeApi = async (id) => {
+    try {
+        const res = await api.delete(`/notice/${id}`);
+        return res.data;
+    } catch (error) {
+        throw error.response?.data || error.message;
+    }
+};

@@ -21,12 +21,14 @@ import ViewDepartmentDetails from "./pages/Departments/ViewDepartmentDetails";
 
 // Notices Routes
 import Notices from "./pages/Notices";
+import AddNotice from "./pages/Notices/Notices/AddNotice";
+// ---notice category---
 import AddNoticeCategory from "./pages/Notices/NoticeCategory/AddNoticeCategory";
+import UpdateNoticeCategory from "./pages/Notices/NoticeCategory/UpdateNoticeCategory";
 
 // News Routes
 import News from "./pages/News";
 import Users from "./pages/Users";
-import UpdateNoticeCategory from "./pages/Notices/NoticeCategory/UpdateNoticeCategory";
 
 function App() {
   return (
@@ -52,6 +54,7 @@ function App() {
 
           {/* Notice Routes */}
           <Route path="notices" element={<Notices />} />
+          <Route path="add-notice" element={<AddNotice />} />
           <Route path="add-notice-category" element={<AddNoticeCategory />} />
           <Route path="update-notice-category/:id" element={<UpdateNoticeCategory />} />
 

@@ -5,10 +5,10 @@ import cloudinary from '../config/cloudnary.js';
 
 const storage = new CloudinaryStorage({
     cloudinary,
-    params: {
-        folder: 'user-profiles',
-        allowed_formats: ['jpg', 'jpeg', 'png'],
-    },
+    params: async (req, file) => ({
+        folder: "notice-banners",
+        allowed_formats: ["jpg", "jpeg", "png"],
+    }),
 });
 
 const uploadNoticeBanner = multer({ storage });
