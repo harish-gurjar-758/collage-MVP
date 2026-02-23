@@ -12,11 +12,11 @@ const noticeSchema = new mongoose.Schema({
     banner: {
         type: String,
     },
-    Date: {
+    dueDate: {
         type: Date,
         required: true,
     },
-    action: {
+    status: {
         type: String,
         defoult: "wait",
     },

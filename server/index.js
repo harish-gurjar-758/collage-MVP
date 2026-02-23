@@ -69,10 +69,12 @@ app.get("/", (req, res) => {
 import userRoutes from "./src/Routes/userRoutes.js";
 import departmentRoutes from './src/Routes/department.routes.js';
 import noticeCategoryRoutes from './src/Routes/noticeCategory.routes.js'
+import noticeRoutes from './src/Routes/notice.routes.js';
 
 app.use("/api/auth", userRoutes);
 app.use("/api/department", departmentRoutes);
 app.use("/api/notice-category", noticeCategoryRoutes);
+app.use("/api/notice", noticeRoutes);
 
 // ===============================
 // Global Error Handler
