@@ -1,19 +1,32 @@
-import { Button, Col, Input, Row, Space, Table } from 'antd'
-import React, { useState } from 'react'
+import { Button, Col, Input, message, Row, Space, Table } from 'antd'
+import React, { useEffect, useState } from 'react'
 import { FaUserEdit } from 'react-icons/fa'
 import { MdDeleteOutline } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
+import { getAllNoticeApi } from '../../utils/Apis/Apis'
 
 export default function NoticeTableView() {
 
     const [searchText, setSearchText] = useState("")
     const [noticeData, setNoticeData] = useState([])
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const getNotices = async () => {
+            try {
+                const res = await getAllNoticeApi();
+                setNoticeData(res.data || []);
+            } catch (error) {
+                message.error(error.message || "Failed to fetch Notice !!");
+            }
+        }
+        getNotices();
+    }, []);
 
     // Filter Logic
     const filteredData = noticeData.filter((item) =>
         item.title?.toLowerCase().includes(searchText.toLowerCase())
-    )
+    );
 
     const columns = [
         {
@@ -23,7 +36,7 @@ export default function NoticeTableView() {
         },
         {
             title: "Title",
-            dataIndex: "",
+            dataIndex: "title",
             key: "title",
         },
         {
