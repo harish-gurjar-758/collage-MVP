@@ -10,13 +10,11 @@ export const registerUser = async (req, res) => {
     const {
       fullName,
       email,
+      phone,
       password,
       role,
-      department,
-      semester,
-      enrollmentNumber,
-      employeeId,
-      phone,
+      isActive,
+      lastLogin
     } = req.body;
 
     // 1️⃣ Check required fields

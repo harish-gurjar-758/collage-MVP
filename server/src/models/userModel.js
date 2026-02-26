@@ -3,91 +3,44 @@ import mongoose from "mongoose";
 const userSchema = new mongoose.Schema(
     {
         fullName: {
-            firstName: {
-                type: String,
-                required: true,
-                trim: true,
-            },
-            lastName: {
-                type: String,
-                required: true,
-                trim: true,
-            },
+            type: String,
+            required: true,
+            trim: true
         },
 
         email: {
             type: String,
             required: true,
             unique: true,
-            lowercase: true,
-            trim: true,
+            lowercase: true
         },
 
         phone: {
             type: String,
+            required: true
         },
 
         password: {
             type: String,
-            required: true,
-            minlength: 6,
+            required: true
         },
 
         role: {
             type: String,
-            enum: ["student", "teacher", "admin", "management"],
-            default: "student",
-        },
-
-        enrollmentNumber: {
-            type: String, // only for students
-        },
-
-        employeeId: {
-            type: String, // only for teachers/admin
-        },
-
-        department: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Department",
-        },
-
-        semester: {
-            type: Number, // only for students
-        },
-
-        subjects: [
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "Subject",
-            },
-        ],
-
-        photo: {
-            type: String,
-            default: "",
+            enum: ["student", "faculty", "admin", "hod", "accountant"],
+            required: true
         },
 
         isActive: {
             type: Boolean,
-            default: true,
+            default: true
         },
 
-        isVerified: {
-            type: Boolean,
-            default: false,
+        profileImage: {
+            type: String
         },
 
-        lastLogin: {
-            type: Date,
-        },
-
-        address: {
-            street: String,
-            city: String,
-            state: String,
-            pincode: String,
-        },
+        lastLogin: Date
     },
     { timestamps: true }
 );
