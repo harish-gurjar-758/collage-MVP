@@ -2,8 +2,9 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../models/userModel.js";
 
+
 // ==========================
-// 🔹 REGISTER USER
+//  REGISTER USER
 // ==========================
 export const registerUser = async (req, res) => {
   try {
@@ -12,20 +13,27 @@ export const registerUser = async (req, res) => {
       email,
       phone,
       password,
-      role,
-      isActive,
-      lastLogin
+      role
     } = req.body;
 
-    // 1️⃣ Check required fields
-    if (!fullName?.firstName || !fullName?.lastName || !email || !password) {
+    // 1 Required fields validation
+    if (!fullName || !email || !password || !phone || !role) {
       return res.status(400).json({
         success: false,
-        message: "Required fields missing",
+        message: "All required fields must be provided",
       });
     }
 
-    // 2️⃣ Check if email already exists
+    // 2 Check valid role
+    const validRoles = ["student", "faculty", "admin", "hod", "accountant"];
+    if (!validRoles.includes(role)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid role selected",
+      });
+    }
+
+    // 3 Check if email already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({
@@ -34,38 +42,22 @@ export const registerUser = async (req, res) => {
       });
     }
 
-    // 3️⃣ Role based validation
-    if (role === "student" && (!semester || !enrollmentNumber)) {
-      return res.status(400).json({
-        success: false,
-        message: "Student must have semester & enrollment number",
-      });
-    }
-
-    if (role === "teacher" && !employeeId) {
-      return res.status(400).json({
-        success: false,
-        message: "Teacher must have employee ID",
-      });
-    }
-
-    // 4️⃣ Hash password
+    // 4 Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const photo = req.file?.path || 'https://img.freepik.com/free-psd/3d-illustration-reading-with-book-esssential_23-2151295086.jpg';
+    // 5 Default profile image
+    const profileImage =
+      req.file?.path ||
+      "https://img.freepik.com/free-psd/3d-illustration-reading-with-book-esssential_23-2151295086.jpg";
 
-    // 5️⃣ Create user
+    // 6 Create user
     const user = await User.create({
       fullName,
       email,
+      phone,
       password: hashedPassword,
       role,
-      department,
-      semester,
-      enrollmentNumber,
-      employeeId,
-      phone,
-      photo,
+      profileImage
     });
 
     res.status(201).json({
@@ -77,6 +69,7 @@ export const registerUser = async (req, res) => {
         role: user.role,
       },
     });
+
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -85,14 +78,17 @@ export const registerUser = async (req, res) => {
   }
 };
 
+
+
 // ==========================
-// 🔹 LOGIN USER
+//  LOGIN USER
 // ==========================
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const user = await User.findOne({ email }).populate("department");
+    // 1 Find user
+    const user = await User.findOne({ email });
 
     if (!user) {
       return res.status(400).json({
@@ -101,6 +97,7 @@ export const loginUser = async (req, res) => {
       });
     }
 
+    // 2 Check active status
     if (!user.isActive) {
       return res.status(403).json({
         success: false,
@@ -108,6 +105,7 @@ export const loginUser = async (req, res) => {
       });
     }
 
+    // 3 Compare password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({
@@ -116,13 +114,14 @@ export const loginUser = async (req, res) => {
       });
     }
 
-    // Generate token
+    // 4 Generate token
     const token = jwt.sign(
       { id: user._id, role: user.role },
       process.env.JWT_SECRET,
       { expiresIn: "7d" }
     );
 
+    // 5 Update last login
     user.lastLogin = new Date();
     await user.save();
 
@@ -130,8 +129,15 @@ export const loginUser = async (req, res) => {
       success: true,
       message: "Login successful",
       token,
-      user,
+      user: {
+        id: user._id,
+        fullName: user.fullName,
+        email: user.email,
+        role: user.role,
+        profileImage: user.profileImage,
+      },
     });
+
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -140,19 +146,27 @@ export const loginUser = async (req, res) => {
   }
 };
 
+
+
 // ==========================
-// 🔹 GET PROFILE
+//  GET PROFILE
 // ==========================
 export const getProfile = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id)
-      .select("-password")
-      .populate("department");
+    const user = await User.findById(req.user.id).select("-password");
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
 
     res.status(200).json({
       success: true,
       data: user,
     });
+
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -161,20 +175,21 @@ export const getProfile = async (req, res) => {
   }
 };
 
+
+
 // ==========================
-// 🔹 GET ALL USERS (ADMIN)
+//  GET ALL USERS (ADMIN)
 // ==========================
 export const getAllUsers = async (req, res) => {
   try {
-    const users = await User.find()
-      .select("-password")
-      .populate("department");
+    const users = await User.find().select("-password");
 
     res.status(200).json({
       success: true,
       count: users.length,
       data: users,
     });
+
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -183,8 +198,10 @@ export const getAllUsers = async (req, res) => {
   }
 };
 
+
+
 // ==========================
-// 🔹 ACTIVATE / DEACTIVATE USER
+//  ACTIVATE / DEACTIVATE USER
 // ==========================
 export const toggleUserStatus = async (req, res) => {
   try {
@@ -204,9 +221,9 @@ export const toggleUserStatus = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: `User ${user.isActive ? "Activated" : "Deactivated"
-        } successfully`,
+      message: `User ${user.isActive ? "Activated" : "Deactivated"} successfully`,
     });
+
   } catch (error) {
     res.status(500).json({
       success: false,
