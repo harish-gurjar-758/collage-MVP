@@ -8,6 +8,7 @@ import {
     NotificationOutlined,
 } from "@ant-design/icons";
 import { Link, Outlet, useLocation } from "react-router-dom";
+import MainHeader from "./MainHeader";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -104,7 +105,7 @@ export default function AdminLayout() {
                         height: 64,
                     }}
                 >
-                    Welcome Admin
+                    <MainHeader />
                 </Header>
 
                 {/* ✅ Content */}
