@@ -8,7 +8,7 @@ export const createNotice = async (req, res) => {
     try {
         const { title, description, dueDate, status, category } = req.body;
 
-        const banner = req.file?.path;
+        const banner = req.file?.path || null;
 
         const notice = await Notice.create({
             title,
@@ -18,7 +18,8 @@ export const createNotice = async (req, res) => {
             category,
             banner,
         });
-
+        console.log("BODY:", req.body);
+        console.log("FILE:", req.file);
         res.status(201).json({
             success: true,
             message: "Notice created successfully.",

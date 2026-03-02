@@ -6,7 +6,7 @@ import {
     getNoticeById,
     updateNotice
 } from '../controllers/notice.controllers.js';
-import uploadNoticeBanner from '../middleware/uploadNoticeBanner.js';
+import uploadNoticeBanner from '../middleware/uploadMediaCloud/uploadNoticeBanner.js';
 
 const router = express.Router();
 
