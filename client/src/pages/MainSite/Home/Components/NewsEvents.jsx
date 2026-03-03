@@ -3,7 +3,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper/modules";
 import { motion } from "framer-motion";
-
+import { useEffect, useState } from "react";
+import { getAllNoticeApi } from "../../../../Apis/Apis";
+import imagePlaceholder from '../../../../assets/imagePlaceholder.png';
 
 const newsData = [
     {
@@ -17,9 +19,20 @@ const newsData = [
         image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=2070",
     },
 ];
-
-
 export default function NewsEvents() {
+    const [notices, setNotices] = useState([]);
+    useEffect(() => {
+        const getNotices = async () => {
+            try {
+                const res = await getAllNoticeApi();
+                setNotices(res.data || []);
+            } catch (error) {
+
+            }
+        }
+
+        getNotices();
+    }, []);
     return (
         <section className="py-20 bg-white">
             {/* <section className="py-16">
@@ -44,16 +57,16 @@ export default function NewsEvents() {
                         1024: { slidesPerView: 3 },
                     }}
                 >
-                    {newsData.map((news, index) => (
-                        <SwiperSlide key={index}>
+                    {notices.map((news) => (
+                        <SwiperSlide key={news._id}>
                             <motion.div
-                                key={index}
-                                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                                key={news._id}
+                                initial={{ opacity: 0, x: news._id % 2 === 0 ? -50 : 50 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.6 }}
                                 className="bg-white border border-gray-200 rounded-xl p-6 shadow-md hover:shadow-xl transition"
                             > <img
-                                    src={news.image}
+                                    src={news.image || imagePlaceholder}
                                     alt={news.title}
                                     className="rounded-t-xl h-60 w-full object-cover"
                                 />

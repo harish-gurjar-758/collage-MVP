@@ -43,7 +43,7 @@ export const createNotice = async (req, res) => {
 
 export const getAllNotices = async (req, res) => {
     try {
-        const notices = await Notice.find();
+        const notices = await Notice.find().populate("category", "noticeCategory").sort({ createdAt: -1 });
 
         res.status(200).json({
             success: true,
@@ -63,7 +63,7 @@ export const getAllNotices = async (req, res) => {
 ========================= */
 export const getNoticeById = async (req, res) => {
     try {
-        const notice = await Notice.findById(req.params.id);
+        const notice = await Notice.findById(req.params.id).populate("category", "noticeCategory");
 
         if (!notice) {
             return res.status(404).json({
