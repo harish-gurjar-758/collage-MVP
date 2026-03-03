@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from "./pages/MainSite/Home"
+import Home from "./pages/Home"
 import Registration from "./pages/Registration"
 import NavHeader from './components/NavHeader';
 import AboutCollege from './pages/AboutCollege/AboutCollege';
@@ -7,7 +7,7 @@ import ExplorePrograms from './pages/ExplorePrograms';
 import CampusTour from './pages/CampusTour';
 import Footer from './components/Footer';
 import Admission from './pages/Admission/Admission';
-import StudentCorner from './pages/MainSite/StudentCorner';
+import StudentCorner from './pages/StudentCorner';
 import DepartmentsPage from './pages/Departments';
 
 function App() {
