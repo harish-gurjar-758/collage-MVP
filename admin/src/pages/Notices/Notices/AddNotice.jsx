@@ -48,10 +48,18 @@ export default function AddNotice() {
 
             message.success("Notice created successfully");
             form.resetFields();
+            setBanner(null);
             navigate("/notices");
 
         } catch (error) {
-            message.error(error || "Something went wrong");
+            console.log("Full Error:", error);
+
+            const errorMessage =
+                error?.response?.data?.message ||
+                error?.message ||
+                "Something went wrong";
+
+            message.error(errorMessage);
         } finally {
             setLoading(false);
         }
@@ -133,11 +141,25 @@ export default function AddNotice() {
                     {/* Banner Upload */}
                     <Form.Item label="Banner">
                         <Upload
-                            beforeUpload={(banner) => {
-                                setBanner(banner);
-                                return false; // prevent auto upload
-                            }}
                             maxCount={1}
+                            beforeUpload={(file) => {
+                                setBanner(file);
+                                return false; // stop auto upload
+                            }}
+                            onRemove={() => {
+                                setBanner(null);
+                            }}
+                            fileList={
+                                banner
+                                    ? [
+                                        {
+                                            uid: "-1",
+                                            name: banner.name,
+                                            status: "done",
+                                        },
+                                    ]
+                                    : []
+                            }
                         >
                             <Button icon={<UploadOutlined />}>
                                 Upload Banner

@@ -6,9 +6,12 @@ import Notice from "../models/noticesModel.js";
 ========================= */
 export const createNotice = async (req, res) => {
     try {
+        console.log("BODY:", req.body);
+        console.log("FILE:", req.file);
+
         const { title, description, dueDate, status, category } = req.body;
 
-        const banner = req.file?.path || null;
+        const banner = req.file ? req.file.path : null;
 
         const notice = await Notice.create({
             title,
@@ -18,17 +21,18 @@ export const createNotice = async (req, res) => {
             category,
             banner,
         });
-        console.log("BODY:", req.body);
-        console.log("FILE:", req.file);
+
         res.status(201).json({
             success: true,
             message: "Notice created successfully.",
             data: notice,
-        })
+        });
+
     } catch (error) {
+        console.error("CREATE NOTICE ERROR:", error);
         res.status(500).json({
             success: false,
-            message: error.message,
+            message: error.message || "Server Error",
         });
     }
 };
