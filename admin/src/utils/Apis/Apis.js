@@ -10,7 +10,6 @@ const api = axios.create({
     },
     withCredentials: true, // remove if not using cookies
 });
-
 /*
 ===***===**==
 DEPARTMENTS

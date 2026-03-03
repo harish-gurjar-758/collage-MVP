@@ -130,7 +130,7 @@ export default function AdminLayout() {
                         style={{
                             padding: 24,
                             minHeight: "calc(100vh - 160px)",
-                            background: "#fff",
+                            background: "#1001",
                             borderRadius: 8,
                         }}
                     >
