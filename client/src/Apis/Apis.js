@@ -34,3 +34,16 @@ export const getAllNoticeApi = async () => {
         throw error.response?.data || error.message;
     }
 };
+
+
+/* =========================
+   GET SINGLE NOTICE
+========================= */
+export const getNoticeByIdApi = async (id) => {
+    try {
+        const res = await API.get(`/notice/${id}`);
+        return res.data;
+    } catch (error) {
+        throw error.response?.data || error.message;
+    }
+};

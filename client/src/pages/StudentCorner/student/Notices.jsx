@@ -144,7 +144,7 @@ export default function Notices() {
                                 {notice.status === "Urgent" && (
                                     <div className="flex items-center gap-2 text-red-600 mb-2">
                                         <AlertTriangle size={18} />
-                                        <span className="text-sm font-semibold">Urgent</span>
+                                        <span className="text-sm font-semibold">{notice.status}</span>
                                     </div>
                                 )}
 
