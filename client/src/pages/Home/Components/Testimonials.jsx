@@ -5,7 +5,7 @@ export default function Testimonials() {
             <p className="max-w-3xl mx-auto text-gray-600">
                 "This college transformed my career. Amazing faculty and campus life!"
             </p>
-            <h4 className="mt-6 font-semibold">— Sarah Khan</h4>
+            <h4 className="mt-6 font-semibold">— Harry gurjar</h4>
         </section>
     );
 }

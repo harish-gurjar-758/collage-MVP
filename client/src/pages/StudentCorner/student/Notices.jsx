@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Search, Download, CalendarDays, AlertTriangle } from "lucide-react";
-import { getAllNoticeApi, getAllNoticeCategoryApi } from "../../../../Apis/Apis";
+import { getAllNoticeApi, getAllNoticeCategoryApi } from "../../../Apis/Apis";
 
 export default function Notices() {
     const [notices, setNotices] = useState([]);

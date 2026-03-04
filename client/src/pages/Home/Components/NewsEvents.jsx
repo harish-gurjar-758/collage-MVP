@@ -4,8 +4,8 @@ import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper/modules";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { getAllNoticeApi } from "../../../../Apis/Apis";
-import imagePlaceholder from '../../../../assets/imagePlaceholder.png';
+import { getAllNoticeApi } from "../../../Apis/Apis";
+import imagePlaceholder from '../../../assets/imagePlaceholder.png';
 
 const newsData = [
     {
